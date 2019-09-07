@@ -1,0 +1,66 @@
+@extends('admin.master')
+@section('content')
+<section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Suppliers</h3>
+            </div>
+            <!-- /.box-header -->
+            <a class="btn btn-primary" href="{{route('suppliers.create')}}">Create a new supplier</a>
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+       <th>Supplier ID</th> 
+       <th>Business Name</th>
+       <th>Name</th>
+       <th>Contact</th>
+       <th>action</th>
+       </th>
+    </tr>
+    </thead>
+    @foreach($suppliers as $supplier)
+    <tbody>
+    <tr>
+    <td>{{ $supplier->id }}</td>
+        <td>{{ $supplier->Businessname }}</td>
+        <td>{{$supplier->name }}</td>
+        <td>{{ $supplier->contact }}</td>
+        <td>{{ $supplier->Address }}</td>
+       <td> <a href="{{route('suppliers.edit',$supplier->id)}}" class="btn btn-primary">Edit</a>
+       
+        <form class="form-inline" role="form" action="{{route('suppliers.destroy',$supplier->id)}}" method="post" >
+            @method('delete')
+            @csrf
+            <div class="form-group">
+            <button class="btn btn-danger">Delete</button>
+</div>
+        </form>
+    </td>
+    </tr>
+@endforeach
+</tbody>
+</table>
+            </div>
+            </div>
+            </div>
+            </div>
+</section>
+@endsection
+@section('scripts')
+<script>
+     $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+  })
+</script>
+@endsection

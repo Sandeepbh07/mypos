@@ -1,0 +1,68 @@
+@extends('admin.master')
+@section('content')
+<section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Users</h3>
+            </div>
+            <!-- /.box-header -->
+            <a class="btn btn-primary" href="{{ route('products.create')  }}">Add new Product</a>
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+       <th>Product Name</th> 
+       <th>Selling price</th>
+       <th>Discount</th>
+       <th>VAT</th>
+       <th>Purchase price</th>  
+       <th>Categories</th>
+       <th>Subcategories</th>
+       <th>action</th>
+       </th>
+    </tr>
+    </thead>
+    @foreach($products as $product)
+    <tbody>
+    <tr>
+    <td>{{ $product->name }}</td>
+        <td>{{ $product->selling_price }}</td>
+        <td>{{ $product->discount }}</td>
+        <td>{{ $product->vat }}</td>
+        <td>{{ $product->purchase_price }}</td>
+        <td>{{  $product->subcategory->name  }}</td> 
+        <td>{{  $product->subcategory->category->name  }}</td> 
+        <td><a href="{{ route('products.edit',$product->id)}} " class="btn btn-primary">Edit</a>
+       <form action="{{ route('products.destroy',$product->id)  }}" method="post">
+         @method('delete')
+         @csrf
+         <button class="btn btn-danger" type="submit">Delete</button>
+       </form>
+       </td>
+    </tr>
+@endforeach
+</tbody>
+</table>
+            </div>
+            </div>
+            </div>
+            </div>
+</section>
+@endsection
+@section('scripts')
+<script>
+     $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+  })
+</script>
+@endsection
