@@ -30,4 +30,6 @@ Route::resource('categories','CategoryController');
 Route::resource('subcategories','SubcategoryController');
 Route::resource('purchases','PurchaseController');
 Route::resource('sales','SalesController');
-Route::post('/product/search','ProductsController@search');
+Route::post('/product/search','ProductsController@search')->name('autocomplete');
+Route::post('/addsale','SalesController@addsale')->name('addtosale');
+Route::get('/customer/search/{id}','CustomersController@getbyuserid');

@@ -25,7 +25,8 @@ if($request->hasfile('product_images')){
 
     $request['product_image']=$name;
     $request->file('product_images')->move(public_path().'/images/products/',$name);
-
+    $request['user_id']=1;
+    $request['supplier_id']=1;
 }
         $this->model->create($request->all());
     }
@@ -41,7 +42,10 @@ if($request->hasfile('product_images')){
                 return $this->edit($id)->delete();
             }
 
-
+public function show($id)
+{
+    return $this->model::find($id);
+}
         public function search($key)
         {
 return $this->model::where('name', 'LIKE', "%$key%")->get();

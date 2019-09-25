@@ -12,6 +12,14 @@ class CustomerRepository implements CustomerInterface{
         return $this->model->all();
     }
     public function store($request){
+        if($request->hasfile('image')){
+    
+            $name=uniqid().$request->file('image')->getClientOriginalName();
+        
+            $request['customer_images']=$name;
+            $request->file('image')->move(public_path().'/images/customer/',$name);
+          
+        }
         $this->model->create($request->all());
     }
     public function edit($id){
@@ -22,5 +30,10 @@ class CustomerRepository implements CustomerInterface{
     }
     public function destroy($id){
         $this->model->edit($id)->delete();
+    }
+
+    public function getbyuserid($id)
+    {
+        return $this->model::where('cuid',$id)->get();
     }
 }

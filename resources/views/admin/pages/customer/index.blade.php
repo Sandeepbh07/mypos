@@ -15,6 +15,7 @@
     <tr> 
     <th>Customer Id</th>
        <th>Name</th>
+       <th>Image</th>
        <th>Address</th>
        <th>Contact</th>
        <th>action</th>
@@ -27,6 +28,7 @@
 
         <td>{{ $customer->cuid }}</td>
         <td>{{ $customer->name }}</td>
+        <td><img src="/images/customer/{{ $customer->customer_images }}" style="width:100px;"></td>
         <td>{{$customer->address }}</td>
         <td>{{ $customer->contact }}</td>
        <td> <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-primary">Edit</a>

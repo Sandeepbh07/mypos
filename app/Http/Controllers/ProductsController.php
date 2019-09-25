@@ -68,6 +68,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
+        return $this->productint->show($id);
         //
     }
 
@@ -116,4 +117,6 @@ class ProductsController extends Controller
       return $this->productint->search($request->searched);
     
     }
+
+    
 }

@@ -77,7 +77,10 @@ class CustomersController extends Controller
         $customer=$this->customint->edit($id);
         return view('admin.pages.customer.edit',compact('customer'));
     }
-
+public function getbyuserid($id)
+{
+return   $this->customint->getbyuserid($id);
+}
     /**
      * Update the specified resource in storage.
      *

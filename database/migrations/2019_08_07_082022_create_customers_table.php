@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('address');
             $table->bigInteger('contact');
             $table->string('cuid');
+            $table->longText('customer_images')->nullable();
             $table->timestamps();
         });
     }

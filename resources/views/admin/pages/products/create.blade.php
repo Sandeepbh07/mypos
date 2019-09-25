@@ -1,4 +1,22 @@
 @extends('admin.master')
+@section('styles')
+<style>
+  	.pic-circle-corner {
+		display: block;
+		width: 200px;
+		height: 200px;
+
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		border-radius: 50%;
+		border: 5px solid #eee;
+		box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+	}
+  </style>
+  @endsection
 @section('content')
 <form role="form" method="post" action="{{ route('products.store')}}" enctype="multipart/form-data">
 
@@ -62,10 +80,17 @@
                 </div>
                 <div class="form-group">
                   <label for="product_image ">Image</label>
-                  <input type="file" class="form-control" name="product_images" placeholder="Upload image" >
+                  <div class="row">
+                    <div class="col-md-6">
+                  <input type="file" class="form-control" name="product_images" placeholder="Upload image"  accept="image/*" onchange="loadFile(event)" >
+                    </div>
+                    <div class="col-md-6">
+                  <img id="output" class="pic-circle-corner"/>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                 <button type="submit" class="btn btn-success">Submit</button>
+                 <button type="submit" class="btn btn-success " style="margin-left:100px;">Submit</button>
                 </div>
 </div>
 {{ csrf_field() }}
@@ -85,6 +110,14 @@ $('.subcategorychoosen').change(function(){
 $('#subcategorydiv').html(`<input type="hidden" value="${selected}" name="subcategories_id">`)
 
 })
+var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 // $(".select2").select2({
 //   maximumSelectionLength: 1
 // });

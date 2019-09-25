@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Customers;
 use Illuminate\Http\Request;
 use App\Http\Interfaces\SalesInterface;
+use App\Transaction;
+use App\User;
 
 class SalesController extends Controller
 {
@@ -85,5 +88,32 @@ class SalesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addsale(Request $request)
+    {
+
+       $user=Customers::find($request->user_id);
+       if($user)
+       {
+           $transaction=$user->transaction()->create($request->all());
+
+
+           foreach($request->product_id as $index=>$product)
+           {
+
+            $transaction->sales()->create([
+                
+'quantity'=>$request['quantity'][$index],
+'discount'=>$request['discount'][$index],
+'vat'=>$request['vat'][$index],
+'price'=>$request['price'][$index],
+'product_id'=>$product
+
+
+            ]);
+           }
+       }
+
     }
 }
