@@ -67,16 +67,15 @@
                 {{csrf_field()}}
             <table id="example2" class="table table-bordered table-hover">
   <thead>
-  <tr>
-     <th></th> 
+  <tr> 
      <th>Image</th>
      <th>Price</th>
      <th>Discount</th>  
      <th>Quantity</th> 
      <th>Total amount</th> 
-     <th>action</th>
      <th>Remaining</th>
-     </th>
+     <th>Action</th>
+     
   </tr>
   </thead>
 

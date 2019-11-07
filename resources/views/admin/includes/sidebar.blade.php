@@ -46,7 +46,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="/products"><i class="fa fa-circle-o"></i> List Products</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Add Product</a></li>
+            <li><a href="products.create"><i class="fa fa-circle-o"></i> Add Product</a></li>
             <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Units</a></li>
             <li><a href="/categories" ><i class="fa fa-circle-o"></i> Categories</a></li>
             <li><a href="/subcategories" ><i class="fa fa-circle-o"></i> SubCategories</a></li>
