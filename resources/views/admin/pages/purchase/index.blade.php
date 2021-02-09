@@ -13,29 +13,34 @@
               <table id="example2" class="table table-bordered table-hover">
     <thead>
     <tr>
-       <th>Date</th> 
+       <th>Date</th>
+       <th>Product</th> 
        <th>Supplier</th>
        <th>Total amount</th>
        <th>Paid Amount</th>
        <th>Remaining Amount</th>
-       <th>Action</th>
-       </th>
+       <th>Quantity</th>
+       <!-- <th>Edit</th>
+       <th>Delete</th> -->
     </tr>
     </thead>
     @foreach($purchases as $purchase)
     <tbody>
     <tr>
-    <td>{{ $purchase->date }}</td>
+    <td>{{ $purchase->created_at->format('d/m/y') }}</td>
+    <td>{{ $purchase->product->name }}</td>
         <td>{{ $purchase->supplier->name }}</td>
-        <td>{{ $purchase->total }}</td>
+        <td>{{ $purchase->total_amount }}</td>
         <td>{{ $purchase->amount_paid }}</td>
         <td>{{ $purchase->remaining_amount  }}</td>
-       <td> <a href="{{ route('purchases.edit',$purchase->id) }}" class="btn btn-primary">Edit</a>
+        <td>{{  $purchase->quantity  }}</td>
+       <!-- <td> <a href="{{ route('purchases.edit',$purchase->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+       <td>
         <form class="form-inline" role="form" action="{{ route('purchases.destroy',$purchase->id) }}" method="post" >
             @method('delete')
             @csrf
             <div class="form-group">
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger"><i class="fa fa-trash"></i>Delete</button> -->
 </div>
         </form>
     </td>
@@ -54,9 +59,9 @@
      $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
+      'paging'      : false,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

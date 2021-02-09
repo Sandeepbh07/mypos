@@ -4,7 +4,7 @@
     @include('admin.assets.header')
 
     <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
     @include('admin.includes.topbar')
     @include('admin.includes.sidebar')
     <div class="content-wrapper">
@@ -20,5 +20,6 @@ $.ajaxSetup({
 });
 </script>
 @yield('scripts')
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

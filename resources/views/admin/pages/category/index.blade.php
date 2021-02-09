@@ -14,18 +14,19 @@
     <thead>
     <tr>
        <th>Category Name</th> 
-       <th>Action</th>
+       <th>Edit</th>
+       <th>Delete</th>
     </tr>
     </thead>
     @foreach($categories as $category)
     <tbody>
     <tr>
         <td>{{ $category->name }}</td>
-       <td><a href="{{ route('categories.edit',$category->id)}} " class="btn btn-primary">Edit</a>
-       <form action="{{ route('categories.destroy',$category->id)  }}" method="post">
+       <td><a href="{{ route('categories.edit',$category->id)}} " class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a></td>
+       <td><form action="{{ route('categories.destroy',$category->id)  }}" method="post">
          @method('delete')
          @csrf
-         <button class="btn btn-danger" type="submit">Delete</button>
+         <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i>Delete</button>
        </form>
        </td>
     </tr>
@@ -45,7 +46,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

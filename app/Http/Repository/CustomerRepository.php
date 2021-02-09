@@ -29,7 +29,7 @@ class CustomerRepository implements CustomerInterface{
         $this->model->edit($id)->update($params);
     }
     public function destroy($id){
-        $this->model->edit($id)->delete();
+        return $this->model->edit($id);
     }
 
     public function getbyuserid($id)

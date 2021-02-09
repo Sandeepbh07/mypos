@@ -9,10 +9,6 @@
                   <input type="text" class="form-control" name="name" placeholder="Enter email" value="{{$user->name}}">
                 </div>
                 <div class="form-group">
-                  <label for="Username">Username</label>
-                  <input type="text" class="form-control" name="Username" placeholder="Enter email" value="{{ $user->Username }}">
-                </div>
-                <div class="form-group">
                   <label for="email">Email address</label>
                   <input type="email" class="form-control" name="email" placeholder="Enter email" value="{{ $user->email }}">
                 </div>

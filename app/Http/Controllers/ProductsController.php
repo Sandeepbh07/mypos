@@ -108,8 +108,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $this->categoryint->destroy($id);
-        return redirect('categories');
+        $this->productint->destroy($id);
+        return redirect('products');
     }
 
     public function search(Request $request)

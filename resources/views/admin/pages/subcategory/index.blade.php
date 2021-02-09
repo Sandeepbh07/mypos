@@ -14,18 +14,19 @@
     <thead>
     <tr>
        <th>SubCategory Name</th> 
-       <th>Action</th>
+       <th>Edit</th>
+       <th>Delete</th>
     </tr>
     </thead>
     @foreach($subcategories as $subcategory)
     <tbody>
     <tr>
         <td>{{ $subcategory->name }}</td>
-       <td><a href="{{ route('subcategories.edit',$subcategory->id)}} " class="btn btn-primary">Edit</a>
-       <form action="{{ route('subcategories.destroy',$subcategory->id)  }}" method="post">
+       <td><a href="{{ route('subcategories.edit',$subcategory->id)}} " class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a>
+       <td><form action="{{ route('subcategories.destroy',$subcategory->id)  }}" method="post">
          @method('delete')
          @csrf
-         <button class="btn btn-danger" type="submit">Delete</button>
+         <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i>Delete</button>
        </form>
        </td>
     </tr>
@@ -45,7 +46,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

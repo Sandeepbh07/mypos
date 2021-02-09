@@ -5,40 +5,41 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Users</h3>
+              <h3 class="box-title">Products</h3>
             </div>
             <!-- /.box-header -->
             <a class="btn btn-primary" href="{{ route('products.create')  }}">Add new Product</a>
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
-    <thead>
+              <thead>
     <tr>
+    <th>Product Image</th>
        <th>Product Name</th> 
        <th>Selling price</th>
        <th>Discount</th>
        <th>VAT</th>
-       <th>Purchase price</th>  
        <th>Categories</th>
        <th>Subcategories</th>
-       <th>action</th>
+       <th>Edit</th>
+       <th>Delete</th>
        </th>
     </tr>
     </thead>
     @foreach($products as $product)
     <tbody>
     <tr>
+    <td width="20%">  <img src="/images/products/{{ $product->product_image }}" class="img-responsive" style="width:100px;height:100px;" alt="Product Image"></td> 
     <td>{{ $product->name }}</td>
         <td>{{ $product->selling_price }}</td>
-        <td>{{ $product->discount }}</td>
-        <td>{{ $product->vat }}</td>
-        <td>{{ $product->purchase_price }}</td>
-        <td>{{  $product->subcategory->name  }}</td> 
+        <td>{{ $product->discount }}%</td>
+        <td>{{ $product->vat }}%</td>
         <td>{{  $product->subcategory->category->name  }}</td> 
-        <td><a href="{{ route('products.edit',$product->id)}} " class="btn btn-primary">Edit</a>
-       <form action="{{ route('products.destroy',$product->id)  }}" method="post">
+        <td>{{  $product->subcategory->name  }}</td> 
+        <td><a href="{{ route('products.edit',$product->id)}} " class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a></td>
+       <td><form action="{{ route('products.destroy',$product->id)  }}" method="post">
          @method('delete')
          @csrf
-         <button class="btn btn-danger" type="submit">Delete</button>
+         <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i>Delete</button>
        </form>
        </td>
     </tr>
@@ -56,9 +57,9 @@
      $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
+      'paging'      : false,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

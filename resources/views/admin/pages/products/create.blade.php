@@ -53,10 +53,7 @@
 
 
                 </div>
-                <div class="form-group">
-                  <label for="purchase_price">Purchase price</label>
-                  <input type="number" class="form-control" name="purchase_price" placeholder="Enter Purchase price" >
-                </div>
+                
                 <div class="form-group">
                   <label for="selling_price">Selling Price</label>
                   <input type="number" class="form-control" name="selling_price" placeholder="Enter sellingprice" >
@@ -67,12 +64,8 @@
                 </div>
                 </div>
                 <div class="form-group">
-                  <label for="VAT">VAT</label>
+                  <label for="vat">VAT</label>
                   <input type="number" class="form-control" name="vat" placeholder="Enter vat" >
-                </div>
-                <div class="form-group">
-                  <label for="quantity ">Quantity</label>
-                  <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" >
                 </div>
                 <div class="form-group">
                   <label for="units ">Unit</label>
@@ -85,7 +78,7 @@
                   <input type="file" class="form-control" name="product_images" placeholder="Upload image"  accept="image/*" onchange="loadFile(event)" >
                     </div>
                     <div class="col-md-6">
-                  <img id="output" class="pic-circle-corner"/>
+                  <img id="output" class="pic-circle-corner" />
                     </div>
                   </div>
                 </div>

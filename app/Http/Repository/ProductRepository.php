@@ -20,13 +20,10 @@ class ProductRepository implements ProductInterface{
     {
 
 if($request->hasfile('product_images')){
-    
     $name=uniqid().$request->file('product_images')->getClientOriginalName();
 
     $request['product_image']=$name;
     $request->file('product_images')->move(public_path().'/images/products/',$name);
-    $request['user_id']=1;
-    $request['supplier_id']=1;
 }
         $this->model->create($request->all());
     }

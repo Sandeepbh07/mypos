@@ -13,29 +13,28 @@
               <table id="example2" class="table table-bordered table-hover">
     <thead>
     <tr>
-       <th>Supplier ID</th> 
+    <th>Name</th>
        <th>Business Name</th>
-       <th>Name</th>
        <th>Contact</th>
-       <th>action</th>
-       </th>
+       <th>Address</th>
+       <th>Edit</th>
+       <th>Delete</th>
     </tr>
     </thead>
     @foreach($suppliers as $supplier)
     <tbody>
     <tr>
-    <td>{{ $supplier->id }}</td>
+    <td>{{$supplier->name }}</td>
         <td>{{ $supplier->Businessname }}</td>
-        <td>{{$supplier->name }}</td>
         <td>{{ $supplier->contact }}</td>
         <td>{{ $supplier->Address }}</td>
-       <td> <a href="{{route('suppliers.edit',$supplier->id)}}" class="btn btn-primary">Edit</a>
-       
+       <td> <a href="{{route('suppliers.edit',$supplier->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a></td>
+       <td>
         <form class="form-inline" role="form" action="{{route('suppliers.destroy',$supplier->id)}}" method="post" >
             @method('delete')
             @csrf
             <div class="form-group">
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger"><i class="fa fa-trash"></i>Delete</button>
 </div>
         </form>
     </td>
@@ -56,7 +55,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

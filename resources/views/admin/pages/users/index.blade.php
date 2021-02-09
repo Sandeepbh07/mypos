@@ -13,27 +13,24 @@
               <table id="example2" class="table table-bordered table-hover">
     <thead>
     <tr>
-       <th>Username</th> 
+       
        <th>Name</th>
-       <th>Role</th>
        <th>Email</th>
-       <th>action</th>
-       </th>
+       <th>Edit</th>
+       <th>Delete</th>
     </tr>
     </thead>
     @foreach($users as $user)
     <tbody>
     <tr>
-    <td>{{ $user->Username }}</td>
         <td>{{ $user->name }}</td>
-        <td>{{ $user->role->name }}</td>
         <td>{{ $user->email }}</td>
-       <td> <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary">Edit</a>
-        <form class="form-inline" role="form" action="{{ route('users.delete',$user->id) }}" method="post" >
+       <td> <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary "><i class="fa fa-edit"></i>Edit</a></td>
+       <td> <form class="form-inline" role="form" action="{{ route('users.delete',$user->id) }}" method="post" >
             @method('delete')
             @csrf
             <div class="form-group">
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger "><i class="fa fa-trash"></i>Delete</button>
 </div>
         </form>
     </td>
@@ -54,7 +51,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

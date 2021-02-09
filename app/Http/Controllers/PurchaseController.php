@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Interfaces\PurchaseInterface;
 use App\Http\Interfaces\SupplierInterface;
+use App\Http\Interfaces\StockInterface;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -12,10 +13,11 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $purchaseint,$suppint;
-   public function __construct(PurchaseInterface $purchaseint,SupplierInterface $suppint){
+    protected $purchaseint,$suppint,$stockint;
+   public function __construct(PurchaseInterface $purchaseint,SupplierInterface $suppint,StockInterface $stockint){
        $this->purchaseint=$purchaseint;
        $this->suppint=$suppint;
+       $this->stockint=$stockint;
    }
 
 
@@ -48,8 +50,9 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
+        $this->stockint->store($request);
         $this->purchaseint->store($request);
-        return redirect('purchases');
+        return redirect('/purchases');
     }
 
     /**

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Customers;
 use Illuminate\Http\Request;
 use App\Http\Interfaces\SalesInterface;
+use App\Http\Interfaces\StockInterface;
+use App\Sales;
 use App\Transaction;
 use App\User;
 
@@ -15,13 +17,15 @@ class SalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $salesint;
-    public function __construct(SalesInterface $salesint){
+    protected $salesint,$stockint;
+    public function __construct(SalesInterface $salesint,StockInterface $stockint){
         $this->salesint=$salesint;
+        $this->stockint=$stockint;
     }
     public function index()
     {
-        $this->salesint->index();
+        $sales=$this->salesint->index();
+        return view('admin.pages.sales.index',compact('sales'));
     }
 
     /**
@@ -112,8 +116,13 @@ class SalesController extends Controller
 
 
             ]);
+            $this->stockint->deleteStock($product,$request['quantity'][$index]);
            }
+
+        $sales=Sales::where('transaction_id',$transaction->id)->with('product')->get();
+  return view('bill',compact('sales','transaction'));
        }
 
     }
+    
 }

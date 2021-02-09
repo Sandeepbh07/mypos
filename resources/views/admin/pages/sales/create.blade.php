@@ -11,12 +11,12 @@
 @endsection
 @section('content')
 <div class="container">
-  <div class="row" style="padding-top:100px; " >
+  <div class="row" style="padding-top:0px; " >
     <div class="col-md-6 " >
 
     <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Quick Example</h3>
+              <h3 class="box-title">Point of Sale</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -63,7 +63,7 @@
           </div>
      
               </div>
-            <form action="{{route('addtosale')}}" method="POST" >
+            <form action="{{route('addtosale')}}" method="POST" id="salesform" >
                 {{csrf_field()}}
             <table id="example2" class="table table-bordered table-hover">
   <thead>
@@ -82,16 +82,16 @@
 
   <tbody id="sale">
 
-
 </tbody>
+
 <input type="hidden" id="userid" name="user_id" >
-<tr> <td  colspan="5"></td><td><input type="text"  class="grandtotal form-control" disabled>
+<tr> <td  colspan="3"></td><td><input type="text"  class="grandtotal form-control" disabled>
 <input type="hidden" class="grandtotal" name="total">
 </td>
   
   <td><input type="text" id="amountpaid" onkeyup="calculateremaining()" name="amount_paid"  class="form-control"></td>
     <td><input type="text" class="remainingamount form-control"   disabled >
-      <input  name="remaining_amount" type="hidden" class="remainingamount" name="total">
+      <input   type="hidden" class="remainingamount" name="remaining_amount">
     </td>
     <td>
   <input type="submit" class="btn btn-success btn-sm"></td></tr> 
@@ -165,26 +165,28 @@ function addtosale(id)
   
 if($(`.sale${response.id}`).length<1)
 { 
+  
 
      var list=`
 
      <tr class="user-header sale${response.id}" id="sale${response.id}">
-  <td></td>
+
       <td width="20%">  <img src="/images/products/${response.product_image}" class="img-responsive" style="width:"200px;height:100px;" alt="User Image"></td>
      
       <td>  <input type="text" class="form-control" id="price${id}"  value="${response.selling_price}" disabled>
         <input type="hidden" class="form-control"  value="${response.selling_price}" name="price[]" >
        </td>
       <td> <input type="text" class="form-control" id="discount${id}"  value="${response.discount}" disabled>
-        <input type="text" class="form-control"   value="${response.discount}" name="discount[]">
+        <input type="hidden" class="form-control"   value="${response.discount}" name="discount[]">
       
        </td>
     
       <td><input type="hidden" id="index${id}" >
       <input type="hidden" name="product_id[]" value="${response.id}">
-      <input type="text" name="vat[]" value="${response.vat}">
+      <input type="hidden" name="vat[]" value="${response.vat}">
       <input type="text" id="quantity${id}" value="1"name="quantity[]" onkeyup="changedamount(${id})"  class="form-control "></td>
       <td id="totalamount${id}"></td>
+      <td></td>
       <td> <button type="submit" class="btn btn-danger pull-right" onclick="removeproduct(${id})">Remove </button></td>  
 
   </tr>
@@ -192,7 +194,7 @@ if($(`.sale${response.id}`).length<1)
       
    `
    $('#sale').append(list)
-   caluclatetotal(id);
+   calculatetotal(id);
 
 for (var j = 0; j < pricearray.length; j++) {
 
@@ -221,13 +223,17 @@ else{
 function removeproduct(i){
   var index=$('#index'+i).val();
   delete pricearray[index];
-  console.log(pricearray) 
   $('#sale'+i).remove();
+  total=0;
+for (var i = 0; i < pricearray.length; i++) {
+    total += pricearray[i] << 0;
+}
+$('.grandtotal').val(total)
 
   }
 
 
-function caluclatetotal(id)
+function calculatetotal(id)
 {
 
 var price=$('#price'+id).val();

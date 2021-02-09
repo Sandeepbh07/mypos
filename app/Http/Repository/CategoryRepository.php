@@ -27,7 +27,7 @@ public function update($params,$id){
 return $this->edit($id)->update($params);
 }
 public function destroy($id){
-    return $this->edit($id)->delete();
+    return $this->edit($id)->delete(); 
 }
 
 }

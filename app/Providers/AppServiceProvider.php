@@ -17,6 +17,8 @@ use App\Http\Interfaces\CustomerInterface;
 use App\Http\Repository\CustomerRepository;
 use App\Http\Interfaces\SalesInterface;
 use App\Http\Repository\SalesRepository;
+use App\Http\Interfaces\StockInterface;
+use App\Http\Repository\StockRepository;
 use App\Purchase;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
        $this->PurchaseRepo();
        $this->CustomerRepo();
        $this->SalesRepo();
+       $this->StockRepo();
     }
 
     /**
@@ -72,5 +75,8 @@ class AppServiceProvider extends ServiceProvider
            }
            public function SalesRepo(){
               $this->app->bind(SalesInterface::class,SalesRepository::class);
+           }
+           public function StockRepo(){
+            $this->app->bind(StockInterface::class,StockRepository::class);
            }
 }

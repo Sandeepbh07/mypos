@@ -18,8 +18,8 @@
        <th>Image</th>
        <th>Address</th>
        <th>Contact</th>
-       <th>action</th>
-       </th>
+       <th>Edit</th>
+      <th>Delete</th>
     </tr>
     </thead>
     @foreach($customer as $customer)
@@ -31,13 +31,13 @@
         <td><img src="/images/customer/{{ $customer->customer_images }}" style="width:100px;"></td>
         <td>{{$customer->address }}</td>
         <td>{{ $customer->contact }}</td>
-       <td> <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-primary">Edit</a>
-       
-        <form class="form-inline" role="form" action="{{route('customers.destroy',$customer->id)}}" method="post" >
+       <td> <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a></td>
+       <td>
+        <form class="form-inline" role="form" action="{{ route('customers.destroy',$customer->id)  }}" method="post" >
             @method('delete')
             @csrf
             <div class="form-group">
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger"><i class="fa fa-trash"></i>Delete</button>
 </div>
         </form>
     </td>
@@ -58,7 +58,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

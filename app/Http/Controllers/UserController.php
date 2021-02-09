@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\User;
+use App\Role;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ public function index(){
  return view('admin.pages.users.index',compact('users'));
 }
 public function create(){
-    return view('admin.pages.users.create');
+    $roles=Role::all();
+    return view('admin.pages.users.create',compact('roles'));
 }
 public function edit($id){
 $user=User::findOrFail($id);

@@ -12,33 +12,27 @@
               <table id="example2" class="table table-bordered table-hover">
     <thead>
     <tr>
-       <th></th> 
        <th>Date</th>
-       <th>Transaction_id</th>
+       <th>Product name</th>
        <th>Customer Name</th>
-       <th>Total sales</th>  
-       <th>Amount paid</th>
-       <th>Remaining amount</th>
-       <th>action</th>
+       <th>Quantity</th>  
+       <th>Price</th>
+       <th>Discount</th>
+       <th>VAT</th>
        </th>
     </tr>
     </thead>
     @foreach($sales as $sale)
     <tbody>
     <tr>
-    <td>{{ $sale->date }}</td>
-        <td>{{ $sale->transaction_id }}</td>
-        <td>{{ $sale->customer->name }}</td>
-        <td>{{ $sale->total }}</td>
-        <td>{{ $sale->amount_paid }}</td>
-        <td>{{  $sale->remaining_amount  }}</td>  
-        <td><a href="{{ route('sales.edit',$sale->id)}} " class="btn btn-primary">Edit</a>
-       <form action="{{ route('sales.destroy',$sale->id)  }}" method="post">
-         @method('delete')
-         @csrf
-         <button class="btn btn-danger" type="submit">Delete</button>
-       </form>
-       </td>
+    <td>{{ $sale->created_at->format('d/m/Y') }}</td>
+        <td>{{ $sale->product->name }}</td>
+        <td>{{ $sale->transaction->customer->name   }}</td>
+        <td>{{ $sale->quantity }}</td>
+        <td>{{ $sale->price }}</td>
+        <td>{{ $sale->discount }}</td>
+        <td>{{ $sale->vat   }}</td>
+         
     </tr>
 @endforeach
 </tbody>
@@ -56,7 +50,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

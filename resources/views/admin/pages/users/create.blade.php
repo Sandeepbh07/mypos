@@ -8,10 +8,6 @@
                   <input type="text" class="form-control" name="name" placeholder="Name" 
                 </div>
                 <div class="form-group">
-                  <label for="Username">Username</label>
-                  <input type="text" class="form-control" name="Username" placeholder="username" >
-                </div>
-                <div class="form-group">
                   <label for="email">Email address</label>
                   <input type="email" class="form-control" name="email" placeholder="Emailaddress" >
                 </div>
@@ -19,9 +15,9 @@
                 <label>Role</label>
                 <select class="form-control " style="width: 100%;" name="role_id">
                   <option selected="selected"></option>
-                  <option value=2 >Cashier</option>
-                  <option value=1 >Admin</option>
-                 
+                  @foreach($roles as $role)
+                  <option value="{{ $role->id}}" >{{ $role->name }}</option>
+                 @endforeach
                 </select>
                 </div>
                 <div class="form-group">
