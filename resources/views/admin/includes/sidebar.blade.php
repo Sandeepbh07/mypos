@@ -45,7 +45,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/products"><i class="fa fa-list"></i> List Products</a></li>
+            <li><a href="/products"><i class="fa fa-list"></i> List Productss</a></li>
             <li><a href="{{ route('products.create')}}"><i class="fa fa-plus-circle"></i> Add Product</a></li>
             <li><a href="/categories" ><i class="fa fa-star"></i> Categories</a></li>
             <li><a href="/subcategories" ><i class="fa fa-star"></i> SubCategories</a></li>
